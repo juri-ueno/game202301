@@ -80,9 +80,9 @@ while x<level:
   if kotae==1:
    a=random.randint(0,10)
    b=random.randint(1,2)
-   print(c,CARA_gohan[0,a])
+   print(c,CARA[0,a])
    input('?')
-   print(c,CARA_gohan[b,a])
+   print(c,CARA[b,a])
    input()  
    m+=1
    x=n*m
