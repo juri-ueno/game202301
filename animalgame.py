@@ -3,22 +3,25 @@ import json
 from enum import IntEnum
 
 class Animal(IntEnum):
+  """動物の種類"""
   KUMA = 1
   NEKO = 2
   USAGI = 3
 
 class Jikan(IntEnum):
+  """動物を育てる時間帯"""
   GOHAN = 1
   OHIRUNE = 2
   OHANASI = 3
 
 class Nannido(IntEnum):
+  """ゲームの難易度"""
   TEI = 1
   TYU = 2
   KOU = 3
 
 class Chara:
-  """ ゲームを実行するキャラクター """
+  """ゲームを実行するキャラクター"""
   def __init__(self, syurui, serihufile):
 
     self.icon = ''
@@ -27,6 +30,7 @@ class Chara:
     self.tabeta_kaisu = 0
     self.ohirune_kaisu = 0
     self.ohanasi_kaisu = 0
+    self.sodateta_kaisu = 0
 
     with open(serihufile) as f:
       jisyo = json.load(f)
@@ -68,9 +72,12 @@ class Chara:
   def get_ohanasi_kaisu(self):
     return self.ohanasi_kaisu
 
+  def get_sodateta_kaisu(self):
+    return self.sodateta_kaisu
+
   def sodateru(self, jikan, seed):
     """作成したキャラを育てる"""
-
+    self.sodateta_kaisu += 1
     if jikan == Jikan.GOHAN:
       self.tabeta_kaisu += 1
     elif jikan == Jikan.OHIRUNE:
@@ -81,6 +88,7 @@ class Chara:
       print('エラーです。初期化してください。')
 
   def get_point(self):
+    """育成で取得したポイント"""
     return self.ohanasi_kaisu + self.tabeta_kaisu
 
 def nannido_input():

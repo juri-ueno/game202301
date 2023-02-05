@@ -23,6 +23,7 @@ class TestAnimalGame(unittest.TestCase):
         self.assertEqual(31, self.chara.get_kotae_ikutu())
 
     def test_point_initial(self):
+        self.assertEqual(0, self.chara.get_sodateta_kaisu())
         self.assertEqual(0, self.chara.get_tabeta_kaisu())
         self.assertEqual(0, self.chara.get_ohirune_kaisu())
         self.assertEqual(0, self.chara.get_ohanasi_kaisu())
@@ -30,6 +31,7 @@ class TestAnimalGame(unittest.TestCase):
 
     def test_point_sodateru_gohan1(self):
         self.chara.sodateru(animalgame.Jikan.GOHAN, 1)
+        self.assertEqual(1, self.chara.get_sodateta_kaisu())
         self.assertEqual(1, self.chara.get_tabeta_kaisu())
         self.assertEqual(0, self.chara.get_ohirune_kaisu())
         self.assertEqual(0, self.chara.get_ohanasi_kaisu())
@@ -39,6 +41,7 @@ class TestAnimalGame(unittest.TestCase):
     def test_point_sodateru_gohan2(self):
         self.chara.sodateru(animalgame.Jikan.GOHAN, 1)
         self.chara.sodateru(animalgame.Jikan.GOHAN, 1)
+        self.assertEqual(2, self.chara.get_sodateta_kaisu())
         self.assertEqual(2, self.chara.get_tabeta_kaisu())
         self.assertEqual(0, self.chara.get_ohirune_kaisu())
         self.assertEqual(0, self.chara.get_ohanasi_kaisu())
@@ -46,6 +49,7 @@ class TestAnimalGame(unittest.TestCase):
 
     def test_point_sodateru_hirune1(self):
         self.chara.sodateru(animalgame.Jikan.OHIRUNE, 1)
+        self.assertEqual(1, self.chara.get_sodateta_kaisu())
         self.assertEqual(0, self.chara.get_tabeta_kaisu())
         self.assertEqual(1, self.chara.get_ohirune_kaisu())
         self.assertEqual(0, self.chara.get_ohanasi_kaisu())
@@ -54,6 +58,7 @@ class TestAnimalGame(unittest.TestCase):
     def test_point_sodateru_hirune2(self):
         self.chara.sodateru(animalgame.Jikan.OHIRUNE, 1)
         self.chara.sodateru(animalgame.Jikan.OHIRUNE, 1)
+        self.assertEqual(2, self.chara.get_sodateta_kaisu())
         self.assertEqual(0, self.chara.get_tabeta_kaisu())
         self.assertEqual(2, self.chara.get_ohirune_kaisu())
         self.assertEqual(0, self.chara.get_ohanasi_kaisu())
@@ -61,6 +66,7 @@ class TestAnimalGame(unittest.TestCase):
 
     def test_point_sodateru_ohanasi1(self):
         self.chara.sodateru(animalgame.Jikan.OHANASI, 1)
+        self.assertEqual(1, self.chara.get_sodateta_kaisu())
         self.assertEqual(0, self.chara.get_tabeta_kaisu())
         self.assertEqual(0, self.chara.get_ohirune_kaisu())
         self.assertEqual(1, self.chara.get_ohanasi_kaisu())
@@ -69,6 +75,7 @@ class TestAnimalGame(unittest.TestCase):
     def test_point_sodateru_ohanasi2(self):
         self.chara.sodateru(animalgame.Jikan.OHANASI, 1)
         self.chara.sodateru(animalgame.Jikan.OHANASI, 1)
+        self.assertEqual(2, self.chara.get_sodateta_kaisu())
         self.assertEqual(0, self.chara.get_tabeta_kaisu())
         self.assertEqual(0, self.chara.get_ohirune_kaisu())
         self.assertEqual(2, self.chara.get_ohanasi_kaisu())
@@ -78,6 +85,7 @@ class TestAnimalGame(unittest.TestCase):
         self.chara.sodateru(animalgame.Jikan.GOHAN, 1)
         self.chara.sodateru(animalgame.Jikan.OHIRUNE, 1)
         self.chara.sodateru(animalgame.Jikan.OHANASI, 1)
+        self.assertEqual(3, self.chara.get_sodateta_kaisu())
         self.assertEqual(1, self.chara.get_tabeta_kaisu())
         self.assertEqual(1, self.chara.get_ohirune_kaisu())
         self.assertEqual(1, self.chara.get_ohanasi_kaisu())
