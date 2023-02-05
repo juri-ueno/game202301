@@ -1,6 +1,6 @@
 import random
 import json
-import Enum
+from enum import IntEnum
 
 class Animal(IntEnum):
   KUMA = 1
@@ -17,60 +17,74 @@ class Nannido(IntEnum):
   TYU = 2
   KOU = 3
 
-class Chara(syurui, serihu)
-  icon
-  sitsumon
-  kotae
-  tabeta_kaisu
-  ohanasi_kaisu
-  point
+class Chara:
+  """ ゲームを実行するキャラクター """
+  def __init__(self, syurui, serihufile):
 
-  def __init__(self, syurui):
+    self.icon = ''
+    self.sitsumon = []
+    self.kotae = []
+    self.tabeta_kaisu = 0
+    self.ohirune_kaisu = 0
+    self.ohanasi_kaisu = 0
 
-    jisyo = {}
-    with open("animalserihu.txt", mode="r") as serihufile:
-      jisyo = json.load(serihufile)
+    with open(serihufile) as f:
+      jisyo = json.load(f)
 
-    if syurui == Animal.KUMA
-      icon = '🧸'
-      sitsumon = jisyo.kuma.sitsumon
-      kotae    = jisyo.kuma.kotae
-    elif syurui == Animal.NEKO
-      icon = '🐈'
-      sitsumon = jisyo.neko.sitsumon
-      kotae    = jisyo.neko.kotae
-    elif syurui == Animal.USAGI
-      icon = '🐇'
-      sitsumon = jisyo.usa.sitsumon
-      kotae    = jisyo.usa.kotae
-    print(icon + "がうまれたよ")
+    if syurui == Animal.KUMA:
+      self.icon     = '🧸'
+      self.sitsumon = jisyo["kuma"]["sitsumon"]
+      self.kotae    = jisyo["kuma"]["kotae"]
+    elif syurui == Animal.NEKO:
+      self.icon     = '🐈'
+      self.sitsumon = jisyo["neko"]["sitsumon"]
+      self.kotae    = jisyo["neko"]["kotae"]
+    elif syurui == Animal.USAGI:
+      self.icon     = '🐇'
+      self.sitsumon = jisyo["usa"]["sitsumon"]
+      self.kotae    = jisyo["usa"]["kotae"]
 
-  def sodateru(jikan):
+  def get_icon(self):
+    return self.icon
+
+  def get_sitsumon(self, seed):
+    return self.sitsumon[seed]
+
+  def get_kotae(self, seed):
+    return self.kotae[seed]
+
+  def get_sitsumon_ikutu(self):
+    return len(self.sitsumon)
+
+  def get_kotae_ikutu(self):
+    return len(self.kotae)
+
+  def get_tabeta_kaisu(self):
+    return self.tabeta_kaisu
+
+  def get_ohirune_kaisu(self):
+    return self.ohirune_kaisu
+
+  def get_ohanasi_kaisu(self):
+    return self.ohanasi_kaisu
+
+  def sodateru(self, jikan, seed):
     """作成したキャラを育てる"""
-    sitsumon_ikutu = len(sitsumon)
-    kotae_ikutu    = len(kotae)
 
     if jikan == Jikan.GOHAN:
-      print(sitsumon[random.randint(0, sitsumon_ikutu)] + '?')
-      print(kotae   [random.randint(0, kotae_ikutu)])
-      tabeta_kaisu += 1
-      point = ohanasi_kaisu * tabeta_kaisu
-      return point
+      self.tabeta_kaisu += 1
     elif jikan == Jikan.OHIRUNE:
-      print('むにゃむにゃ．．．')
-      return point
+      self.ohirune_kaisu += 1
     elif jikan == Jikan.OHANASI:
-      print(sitsumon[random.randint(0, sitsumon_ikutu)] + '?')
-      print(kotae   [random.randint(0, kotae_ikutu)])
-      ohanasi_kaisu += 1
-      point=nohanasi_kaisu * tabeta_kaisu
-      return point
+      self.ohanasi_kaisu += 1
     else:
       print('エラーです。初期化してください。')
 
-    
+  def get_point(self):
+    return self.ohanasi_kaisu + self.tabeta_kaisu
+
 def nannido_input():
-  """難易度選択"""
+  """ 難易度選択 """
   nannido=int(input('難易度は？[1=低 2=中 3=高]:'))
   if nannido == Nannido.TEI:
     level=9
@@ -85,14 +99,15 @@ def nannido_input():
     print('エラーです。やり直してください。')
 
 def chara_input():
-  """動物選択"""
-  syurui=int(input('動物を選択してください。[1=熊 2=猫 3=兎]：'))
+  """ 動物選択 """
+  syurui = int(input('動物を選択してください。[1=熊 2=猫 3=兎]：'))
   c = Chara(syurui)
+  print(c.icon + " がうまれたよ")
 
 def jikan_input():
-  """飼育"""
+  """ 飼育 """
   print('どんどんそだてましょー')
-  jikan=int(input('1=ごはんの時間 2=おひるねの時間 3=お話する'))#intだと整数以外の入力NGなのでintはなくすでも変わんなかった
+  jikan = int(input('1=ごはんの時間 2=おひるねの時間 3=お話する'))#intだと整数以外の入力NGなのでintはなくすでも変わんなかった
 
 def game_syuryou():
   print('以下は、目安達成数値です。　# ・ohanasi: 低３　中15: 高30・gohan: 低３　中15: 高30・level: 低９　中250: 高1000')
