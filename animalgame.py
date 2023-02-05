@@ -1,116 +1,99 @@
-import numpy as np
 import random
+import json
+import Enum
 
+class Animal(IntEnum):
+  KUMA = 1
+  NEKO = 2
+  USAGI = 3
 
-'''キャラクターのセリフ'''
-CARA=[]
-kuma_ohanasi=np.array([
-            ['なんさいなの?','身長,しりたいくま？','家族構成はなにくま?','好きな星座おしえてん','好きな色は','すきなばしょは？','季節の情緒は？','すきな映画は？','すきなアニメは？','こんにちは!','今日の天気は何','好きな料理は何','推しいる？誰？','くまに名前つけるなら？','好きな動物は？','好きな古典は？','こんばんは','Hey you!!','What your favorite singer?','好きな髪型は?']#0行目
-            ['高校っていい所だくま','ひ、ひみつ。','家族構成はなにくま?','好きな星座おしえてん','好きな色は','すきなばしょは？','季節の情緒は？','すきな映画は？','すきなアニメは？','こんにちは!くま','そっか...','今度食べ行こうくま','かっこいいくま？','今日からそうなのるくま','熊？嬉しいくま。','風流があるくま','いい夜だくま...','I am a KUMA!!!!','ummmm..','meは髪の毛生えてないからその髪型できないくま( ﾉД`)'],
-            ['ふふふ','外に出ていきたいくま','手料理、期待しているくま。','きょうからmeを推しにしちゃえくま!!','まさか元カノ,じゃなくて元彼,じゃなくて元くま、くまか??','meはやっぱりアリクイくま♡','meは懐風藻が好きくま。漢詩の美しい響がおすすめくま。','서로를 비춘 밤...憧れくまね。','Hey kuma!にちなんで宇多田ヒカル - くまちゃん会社訪問映像https://www.youtube.com/watch?v=gKtS-bqDjfQ','世界に一つだけの花、固有性。SMAPは農業が上手いくま。','meは、似合ってればなんでもいいくま'],
-            ])       
- 
-usa_ohanasi=np.array([
-            ['こんにちは!','今日の天気は何','好きな料理は何','推しいる？誰？','くまに名前つけるなら？','好きな動物は？','好きな古典は？','こんばんは','Hey you!!','What your favorite singer?'],#0行目
-            ['こんにちは!くま','そっか...','今度食べ行こうくま','かっこいいくま？','今日からそうなのるくま','熊？嬉しいくま。','風流があるくま','いい夜だくま...','I am a KUMA!!!!','ummmm..'],
-            ['ふふふ','外に出ていきたいくま','手料理、期待しているくま。','きょうからmeを推しにしちゃえくま!!','まさか元カノ,じゃなくて元彼,じゃなくて元くま、くまか??','meはやっぱりアリクイくま♡','meは懐風藻が好きくま。漢詩の美しい響がおすすめくま。','서로를 비춘 밤...憧れくまね。','Hey kuma!にちなんで宇多田ヒカル - くまちゃん会社訪問映像https://www.youtube.com/watch?v=gKtS-bqDjfQ','世界に一つだけの花、固有性。SMAPは農業が上手いくま。'],
-            ]) 
+class Jikan(IntEnum):
+  GOHAN = 1
+  OHIRUNE = 2
+  OHANASI = 3
 
-neko_ohanasi=np.array([
-             ['こんにちは!','今日の天気は何','好きな料理は何','推しいる？誰？','くまに名前つけるなら？','好きな動物は？','好きな古典は？','こんばんは','Hey you!!','What your favorite singer?'],#0行目
-            ['こんにちは!くま','そっか...','今度食べ行こうくま','かっこいいくま？','今日からそうなのるくま','熊？嬉しいくま。','風流があるくま','いい夜だくま...','I am a KUMA!!!!','ummmm..'],
-            ['ふふふ','外に出ていきたいくま','手料理、期待しているくま。','きょうからmeを推しにしちゃえくま!!','まさか元カノ,じゃなくて元彼,じゃなくて元くま、くまか??','meはやっぱりアリクイくま♡','meは懐風藻が好きくま。漢詩の美しい響がおすすめくま。','서로를 비춘 밤...憧れくまね。','Hey kuma!にちなんで宇多田ヒカル - くまちゃん会社訪問映像https://www.youtube.com/watch?v=gKtS-bqDjfQ','世界に一つだけの花、固有性。SMAPは農業が上手いくま。'],
-])    
+class Nannido(IntEnum):
+  TEI = 1
+  TYU = 2
+  KOU = 3
 
-'''キャラクターのごはん＊ただしメニューと反応２つ作る'''
+class Chara(syurui, serihu)
+  icon
+  sitsumon
+  kotae
+  tabeta_kaisu
+  ohanasi_kaisu
+  point
 
-#最初の難度の設定
-ohanasi=0
-gohan=0
-level=0
-'''難易度選択'''
-nannido=int(input('難易度は？[1=低 2=中 3=高]:'))
-if nannido==1:
-  print('低ですね。楽しんでください')
-  print()
-  ohanasi=3
-  gohan=3
-  level=9
-elif nannido==2:
-  print('中ですね。おすすめです。')
-  print()
-  ohanasi=15
-  gohan=15
-  level=250
-elif nannido==3:
-  print('高ですか頑張ってください(^▽^)/')
-  print()
-  ohanasi=30
-  gohan=30
-  level=1000
-else:
-  print('エラーです。やり直してください。')
+  def __init__(self, syurui):
 
-'''動物選択'''
-c=0 #キャラクターアイコン設定用変数
-D_syurui=int(input('動物を選択してください。[1=熊 2=猫 3=兎]：'))
-if D_syurui==1:
-  print('くまですね!産まれました!ほら!')
-  CARA_ohanasi=kuma_ohanasi
-  c='🧸'
-elif D_syurui==2:
-  print('ねこですね!産まれました!ほら!')
-  CARA_ohanasi=neko_ohanasi
-  c='🐈'
-elif D_syurui==3:
-  print('うさぎですね!産まれました!ほら!')
-  CARA_ohanasi=usa_ohanasi
-  c='🐇'
+    jisyo = {}
+    with open("animalserihu.txt", mode="r") as serihufile:
+      jisyo = json.load(serihufile)
 
+    if syurui == Animal.KUMA
+      icon = '🧸'
+      sitsumon = jisyo.kuma.sitsumon
+      kotae    = jisyo.kuma.kotae
+    elif syurui == Animal.NEKO
+      icon = '🐈'
+      sitsumon = jisyo.neko.sitsumon
+      kotae    = jisyo.neko.kotae
+    elif syurui == Animal.USAGI
+      icon = '🐇'
+      sitsumon = jisyo.usa.sitsumon
+      kotae    = jisyo.usa.kotae
+    print(icon + "がうまれたよ")
 
-'''飼育'''
-n=0
-m=0
-x=0
+  def sodateru(jikan):
+    """作成したキャラを育てる"""
+    sitsumon_ikutu = len(sitsumon)
+    kotae_ikutu    = len(kotae)
 
-while x<level:
-  print()
-  print('どんどんそだてましょ-')
-  kotae=int(input('1=ごはんの時間 2=おひるねの時間 3=お話する'))#intだと整数以外の入力NGなのでintはなくすでも変わんなかった
-  if kotae==1:
-   a=random.randint(0,10)
-   b=random.randint(1,2)
-   print(c,CARA[0,a])
-   input('?')
-   print(c,CARA[b,a])
-   input()  
-   m+=1
-   x=n*m
+    if jikan == Jikan.GOHAN:
+      print(sitsumon[random.randint(0, sitsumon_ikutu)] + '?')
+      print(kotae   [random.randint(0, kotae_ikutu)])
+      tabeta_kaisu += 1
+      point = ohanasi_kaisu * tabeta_kaisu
+      return point
+    elif jikan == Jikan.OHIRUNE:
+      print('むにゃむにゃ．．．')
+      return point
+    elif jikan == Jikan.OHANASI:
+      print(sitsumon[random.randint(0, sitsumon_ikutu)] + '?')
+      print(kotae   [random.randint(0, kotae_ikutu)])
+      ohanasi_kaisu += 1
+      point=nohanasi_kaisu * tabeta_kaisu
+      return point
+    else:
+      print('エラーです。初期化してください。')
 
-  elif kotae==2:
-   print('むにゃむにゃ．．．')
-   input()  
-
-  elif kotae==3:
-   a=random.randint(0,9)
-   b=random.randint(1,2)
-   print(c,CARA_ohanasi[0,a])
-   input('?')
-   print(c,CARA_ohanasi[b,a])
-   input()  
-   n+=1
-   x=n*m
-
+    
+def nannido_input():
+  """難易度選択"""
+  nannido=int(input('難易度は？[1=低 2=中 3=高]:'))
+  if nannido == Nannido.TEI:
+    level=9
+    print('低ですね。楽しんでください')
+  elif nannido == Nannido.TYU:
+    level=250
+    print('中ですね。おすすめです。')
+  elif nannido == Nannido.KOU:
+    level=1000
+    print('高ですか頑張ってください(^▽^)/')
   else:
-   print('エラーです。初期化してください。')
-print('進化しました')
+    print('エラーです。やり直してください。')
 
-#レベル２の難易度設定～
-level=2*level
+def chara_input():
+  """動物選択"""
+  syurui=int(input('動物を選択してください。[1=熊 2=猫 3=兎]：'))
+  c = Chara(syurui)
 
-#ゲーム終了テキスト
-print('以下は、目安達成数値です。　# ・ohanasi　低３　中15　高30・gohan　低３　中15　高30・level　低９　中250　高1000')
-n=ohanasi
-m=gohan
-print()
-print('以下は、あなたの行動記録です。参考にしてまたぷれいしてくだいね')
+def jikan_input():
+  """飼育"""
+  print('どんどんそだてましょー')
+  jikan=int(input('1=ごはんの時間 2=おひるねの時間 3=お話する'))#intだと整数以外の入力NGなのでintはなくすでも変わんなかった
+
+def game_syuryou():
+  print('以下は、目安達成数値です。　# ・ohanasi: 低３　中15: 高30・gohan: 低３　中15: 高30・level: 低９　中250: 高1000')
+  print('以下は、あなたの行動記録です。参考にしてまたぷれいしてくだいね')
