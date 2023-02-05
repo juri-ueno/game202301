@@ -48,32 +48,21 @@ class Chara:
       self.sitsumon = jisyo["usa"]["sitsumon"]
       self.kotae    = jisyo["usa"]["kotae"]
 
-  def get_icon(self):
-    return self.icon
-
   def get_sitsumon(self, seed):
+    """質問の〇番目を返す"""
     return self.sitsumon[seed]
 
   def get_kotae(self, seed):
+    """答えの〇番目を返す"""
     return self.kotae[seed]
 
   def get_sitsumon_ikutu(self):
+    """質問をいくつもっているかを返す"""
     return len(self.sitsumon)
 
   def get_kotae_ikutu(self):
+    """答えをいくつもっているかを返す"""
     return len(self.kotae)
-
-  def get_tabeta_kaisu(self):
-    return self.tabeta_kaisu
-
-  def get_ohirune_kaisu(self):
-    return self.ohirune_kaisu
-
-  def get_ohanasi_kaisu(self):
-    return self.ohanasi_kaisu
-
-  def get_sodateta_kaisu(self):
-    return self.sodateta_kaisu
 
   def sodateru(self, jikan, seed):
     """作成したキャラを育てる"""
@@ -88,7 +77,7 @@ class Chara:
       print('エラーです。初期化してください。')
 
   def get_point(self):
-    """育成で取得したポイント"""
+    """育成で取得したポイントを返す"""
     return self.ohanasi_kaisu + self.tabeta_kaisu
 
 def nannido_input():
