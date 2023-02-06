@@ -64,7 +64,7 @@ class Chara:
     """答えをいくつもっているかを返す"""
     return len(self.kotae)
 
-  def sodateru(self, jikan, seed):
+  def sodateru(self, jikan):
     """作成したキャラを育てる"""
     self.sodateta_kaisu += 1
     if jikan == Jikan.GOHAN:
@@ -104,7 +104,8 @@ def chara_input():
 def jikan_input():
   """ 飼育 """
   print('どんどんそだてましょー')
-  jikan = int(input('1=ごはんの時間 2=おひるねの時間 3=お話する'))#intだと整数以外の入力NGなのでintはなくすでも変わんなかった
+  jikan = int(input('1=ごはんの時間 2=おひるねの時間 3=お話する'))
+
 
 def game_syuryou():
   print('以下は、目安達成数値です。　# ・ohanasi: 低３　中15: 高30・gohan: 低３　中15: 高30・level: 低９　中250: 高1000')
